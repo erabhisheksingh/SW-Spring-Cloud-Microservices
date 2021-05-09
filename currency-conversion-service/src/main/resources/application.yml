@@ -1,0 +1,53 @@
+server:
+  port: 8100
+
+spring:
+  application:
+    name: currency-conversion-service
+    
+  cloud:
+    loadbalancer:
+      ribbon:
+        enable: false
+
+  config:
+    import: optional:configserver:http://localhost:8888
+
+# Sleuth Sampling percentage config
+# 1.0 means 100%
+  sleuth:
+    sampler:
+      probability: 1.0
+    
+#currency-exchange-service:
+#  ribbon:
+#    listOfServers: http://localhost:8000, http://localhost:8001
+    
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+  instance:
+    preferIpAddress: true
+    
+#SpringBoot Actuator Configuration
+management:
+  endpoints:
+    web:
+      base-path: /*
+      
+resilience4j:
+  circuitbreaker:
+    instances:
+        default:
+            registerHealthIndicator: true
+            slidingWindowSize: 10
+            permittedNumberOfCallsInHalfOpenState: 3
+            slidingWindowType: TIME_BASED
+            minimumNumberOfCalls: 20
+            waitDurationInOpenState: 50s
+            failureRateThreshold: 50
+            eventConsumerBufferSize: 10
+
+      

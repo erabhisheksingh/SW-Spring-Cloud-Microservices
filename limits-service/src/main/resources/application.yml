@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: limits-service
+
+  profiles:
+    active: dev
+
+  cloud:
+    config:
+      uri: http://localhost:8888
+      username: erabhisheksingh
+      password: Abgithub@92
+
+  config:
+    import: optional:configserver:http://localhost:8888
+
+server:
+  port:  8085

@@ -1,0 +1,24 @@
+#Eureka Server specific Configs
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+
+server:
+  port: 8761
+
+spring:
+  application:
+    name: eureka-naming-server
+
+  config:
+    import: optional:configserver:http://localhost:8888
+    
+# Sleuth Sampling percentage config
+# 1.0 means 100%
+  sleuth:
+    sampler:
+      probability: 1.0
+    
+
+    

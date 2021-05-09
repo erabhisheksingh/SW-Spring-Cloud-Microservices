@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: spring-cloud-config-server
+  
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/erabhisheksingh/SW-Spring-Cloud-Microservices
+          clone-on-start: false
+          username: erabhisheksingh
+          password: Abgithub@92
+          default-label: main
+          
+#  profiles:#   active: native
+
+server:
+  port: 8888
